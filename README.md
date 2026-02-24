@@ -48,3 +48,33 @@ firebase deploy
 ## 当前状态
 - 已完成 Sprint 1 的工程骨架：前端路由页面、Functions 触发器占位、规则文件与常量映射。
 - 下一步建议：落地上传页与 `onUploadCreated` 闭环。
+
+## 常见问题排查
+
+### 本机没有 `frontend` 目录
+
+请按下面顺序检查：
+
+1. **确认你在仓库根目录**
+   ```bash
+   pwd
+   ls
+   ```
+   正常应看到：`frontend`、`functions`、`docs`。
+
+2. **确认当前分支和最新提交**
+   ```bash
+   git branch --show-current
+   git pull
+   git log --oneline -n 5
+   ```
+
+3. **如果是新机器，重新克隆后再进入目录**
+   ```bash
+   git clone <你的仓库地址> KJ_MonAutoRpt
+   cd KJ_MonAutoRpt
+   ls
+   ```
+
+4. **如果你只下载了部分文件（ZIP/子目录）**
+   请改用完整 `git clone`，确保仓库根目录完整拉取。
