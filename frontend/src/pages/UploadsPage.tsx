@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type FormEvent } from 'react';
 import {
   contentTypeOptions,
   createMockUploadPayload,
@@ -8,7 +8,12 @@ import {
 } from '../lib/upload';
 
 export function UploadsPage() {
-  const currentMonth = useMemo(() => new Date().toISOString().slice(0, 7), []);
+  const currentMonth = useMemo(() => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = `${now.getMonth() + 1}`.padStart(2, '0');
+    return `${year}-${month}`;
+  }, []);
   const [reportMonth, setReportMonth] = useState(currentMonth);
   const [materialCategory, setMaterialCategory] = useState('');
   const [contentType, setContentType] = useState('');
@@ -17,7 +22,7 @@ export function UploadsPage() {
   const [errors, setErrors] = useState<string[]>([]);
   const [submittedPayload, setSubmittedPayload] = useState<object | null>(null);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const validation = validateUploadForm({

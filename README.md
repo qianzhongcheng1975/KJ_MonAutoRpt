@@ -19,12 +19,31 @@ npm install
 npm run dev
 ```
 
+前端生产构建：
+```bash
+cd frontend
+npm run build
+```
+
 ### 3) Functions
 ```bash
 cd functions
 npm install
 npm run build
 ```
+
+## 部署（Firebase Hosting + Functions）
+
+```bash
+# 先构建前端
+cd frontend && npm install && npm run build
+
+# 回到仓库根目录部署
+cd ..
+firebase deploy
+```
+
+> Hosting 已配置 SPA rewrite（任意路由回落到 `index.html`），`/uploads` 等前端路由刷新不会再出现 404。
 
 ## 当前状态
 - 已完成 Sprint 1 的工程骨架：前端路由页面、Functions 触发器占位、规则文件与常量映射。
